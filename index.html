@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chai Corner Menu</title>
+    <title>Chai Corner - Home</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -12,14 +11,18 @@
     <header>
       <h1>Chai Corner</h1>
       <p class="tagline">Taste Better</p>
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </header>
 
     <main class="container">
 
       <section class="hero-section">
-        <img src="wall.jpg">
+        <img src="wall.jpg" alt="Chai Corner Ambience">
       </section>
-
 
       <section class="menu-section">
         <h2>Our Special Menu</h2>
@@ -73,18 +76,13 @@
 
     </main>
 
-
     <footer>
-      <p> Made with love by Arham </p>
+      <p>Made with love by Arham</p>
     </footer>
-
 
     <script>
       function orderItem(itemName) {
-    
         console.log("Order button was clicked for item: " + itemName);
-
-  
         window.alert("Thank you for ordering " + itemName + "! Your order is being prepared.");
       }
     </script>

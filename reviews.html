@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai Corner - Reviews</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <header>
+      <h1>Chai Corner</h1>
+      <p class="tagline">Taste Better</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="reviews.html" class="active">Reviews</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <!-- Form Section -->
+      <section class="content-section">
+        <h2>Leave a Review</h2>
+        <form id="reviewForm" onsubmit="addReview(event)">
+          <div class="form-group">
+            <label for="reviewerName">Your Name</label>
+            <input type="text" id="reviewerName" required placeholder="e.g. Ali Khan">
+          </div>
+
+          <div class="form-group">
+            <label for="rating">Rating</label>
+            <select id="rating" required class="form-select">
+              <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+              <option value="4">⭐⭐⭐⭐ (4/5)</option>
+              <option value="3">⭐⭐⭐ (3/5)</option>
+              <option value="2">⭐⭐ (2/5)</option>
+              <option value="1">⭐ (1/5)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="reviewComment">Your Feedback</label>
+            <textarea id="reviewComment" rows="3" required placeholder="How was your tea?"></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Submit Review</button>
+        </form>
+      </section>
+
+      <!-- Customer Reviews List Section -->
+      <section class="content-section" style="margin-top: 2rem;">
+        <h2>What Our Customers Say</h2>
+        <div id="reviewsContainer">
+          <!-- Reviews load dynamically here -->
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Made with love by Arham</p>
+    </footer>
+
+    <script>
+      // Initial default sample reviews
+      const defaultReviews = [
+        { name: "Hamza Sheikh", rating: 5, comment: "Best Karak Chai in town! The cheese paratha is a must-try." },
+        { name: "Sara Ahmed", rating: 5, comment: "Super warm cozy ambiance and fast service. Loved the doodh patti." }
+      ];
+
+      // Load reviews when page loads
+      window.onload = function() {
+        renderReviews();
+      };
+
+      function getSavedReviews() {
+        const saved = localStorage.getItem('chaiCornerReviews');
+        return saved ? JSON.parse(saved) : defaultReviews;
+      }
+
+      function renderReviews() {
+        const reviews = getSavedReviews();
+        const container = document.getElementById('reviewsContainer');
+        container.innerHTML = '';
+
+        reviews.forEach(review => {
+          const stars = '⭐'.repeat(review.rating);
+          const reviewCard = document.createElement('div');
+          reviewCard.className = 'review-card';
+          reviewCard.innerHTML = `
+            <div class="review-header">
+              <strong>${escapeHtml(review.name)}</strong>
+              <span class="stars">${stars}</span>
+            </div>
+            <p class="review-text">${escapeHtml(review.comment)}</p>
+          `;
+          container.appendChild(reviewCard);
+        });
+      }
+
+      function addReview(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('reviewerName').value;
+        const rating = parseInt(document.getElementById('rating').value);
+        const comment = document.getElementById('reviewComment').value;
+
+        const newReview = { name, rating, comment };
+        const reviews = getSavedReviews();
+        
+        // Add new review to the top of the list
+        reviews.unshift(newReview);
+
+        // Save to browser storage
+        localStorage.setItem('chaiCornerReviews', JSON.stringify(reviews));
+
+        // Refresh list & reset form
+        renderReviews();
+        document.getElementById('reviewForm').reset();
+        window.alert("Thank you for sharing your feedback!");
+      }
+
+      // Helper to prevent HTML injection errors
+      function escapeHtml(str) {
+        return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      }
+    </script>
+
+  </body>
+</html>

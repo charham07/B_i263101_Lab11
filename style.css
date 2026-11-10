@@ -1,3 +1,4 @@
+/* General Page Styling */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #FAF4EE;
@@ -7,6 +8,7 @@ body {
   line-height: 1.6;
 }
 
+/* Header & Navigation */
 header {
   background-color: #4A2E2B;
   color: #FFFFFF;
@@ -26,7 +28,6 @@ header .tagline {
   margin-top: 0.5rem;
 }
 
-/* Navigation Menu */
 nav {
   margin-top: 1.5rem;
 }
@@ -34,9 +35,9 @@ nav {
 nav a {
   color: #D7CCC8;
   text-decoration: none;
-  margin: 0 15px;
+  margin: 0 12px;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1rem;
   transition: color 0.3s ease;
 }
 
@@ -46,6 +47,7 @@ nav a.active {
   text-decoration: underline;
 }
 
+/* Page Containers & Media */
 .container {
   max-width: 800px;
   margin: 2rem auto;
@@ -57,15 +59,15 @@ nav a.active {
   margin-bottom: 2rem;
 }
 
-img {
-  max-width: 100%;    
-  max-height: 400px; 
-  height: auto;       
-  width: auto;
+.hero-image {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
   border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Content Sections */
+/* Card Sections */
 .menu-section,
 .content-section {
   background-color: #FFFFFF;
@@ -82,7 +84,7 @@ img {
   margin-top: 0;
 }
 
-/* Table Styles */
+/* Table Styles (Home/Menu Page) */
 .menu-table {
   width: 100%;
   border-collapse: collapse;
@@ -112,7 +114,7 @@ img {
   background-color: #D84315;
   color: #FFFFFF;
   border: none;
-  padding: 10px 20px;
+  padding: 8px 16px;
   font-size: 0.9rem;
   font-weight: bold;
   border-radius: 20px;
@@ -125,7 +127,7 @@ img {
   background-color: #BF360C;
 }
 
-/* Form Styles */
+/* Form Styles (Contact & Review Pages) */
 .form-group {
   margin-bottom: 1rem;
 }
@@ -137,15 +139,52 @@ img {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-select {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
   border: 1px solid #D7CCC8;
   border-radius: 4px;
+  background-color: #FFFFFF;
   font-family: inherit;
+  font-size: 0.95rem;
+  color: #3E2723;
 }
 
+.form-group input:focus,
+.form-group textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #8D6E63;
+}
+
+/* Review Cards (Reviews Page) */
+.review-card {
+  background-color: #FAF4EE;
+  border-left: 4px solid #8D6E63;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 4px;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.stars {
+  font-size: 0.9rem;
+}
+
+.review-text {
+  margin: 0;
+  color: #4A2E2B;
+}
+
+/* Footer */
 footer {
   text-align: center;
   padding: 1.5rem;
